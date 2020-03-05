@@ -6,11 +6,13 @@ class FileSeparator {
     public static void main(String[] args) throws IOException{
         try(FileInputStream fis = new FileInputStream("inputfile/file.txt");)
         {
-            byte[] b = new byte[256*1000]; 
+            byte[] b = new byte[256*1024]; 
             int curr_file = 1;
-            while(fis.read(b, 0, 256*1000) != -1) {
-                try(FileOutputStream fos = new FileOutputStream("outputfiles/output" + curr_file + ".txt");)
+            while(fis.read(b, 0, 256*1024) != -1) {
+                try(FileOutputStream fos = new FileOutputStream("outputfiles/out" + curr_file + ".txt");)
                 {
+                    // int av = fis.available();
+                    // fos.write(b, 0, (av<256*1024)?av:256*1024);
                     fos.write(b);
                 }
                 ++curr_file;
